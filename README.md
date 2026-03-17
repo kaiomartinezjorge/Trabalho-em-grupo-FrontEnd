@@ -1,10 +1,19 @@
-# Jogo da Velha: Documentação
+# Situação de Aprendizagem 1 - FrontEnd
+### Grupo: Ana Sofhia Leonardi de Morais, Gabriela Machado, Guilherme Prestes Bosco Biondo e Kaio Martinez Jorge
 
-## Funcionalidade:
+## Atividades Realizadas:
+- Piano Simples(Fácil);
+- Cronômetro(Médio);
+- Jogo da Velha(Difícil).
+
+
+### Jogo da Velha: Documentação
+
+#### Funcionalidade:
     - O Jogo da Velha permite que o usuario insira o simbolo "X" e "O", sequencialmente. Se um jogador fizer a linha, independente de sua posição, aparecerá o vencedor em um pop-up, podendo ser o "X" ou "O", e o botão de "Jogar Novamente". Caso dê velha, o mesmo pop-up aparece, mas com a mensagem "Deu Velha" e o botão de "Jogar Novamente";
     - Na parte inferior da tela também temos um botão de reiniciar caso o jogador esteja insatisfeito com seu jogo e não queira continuá-lo.
 
-## Dificuldades:
+#### Dificuldades:
     - Desenvolver a lógica de funcionamento; 
     - Fazer os arrays que definem as posições de vitória;
     - Deixar o código visualmnete bonito;
