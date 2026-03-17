@@ -1,0 +1,110 @@
+/* Estilo geral da página */
+body{
+font-family: Arial, Helvetica, sans-serif;
+background: #1e1e2f;
+color: white;
+text-align: center;
+margin: 0;
+padding: 20px;
+}
+
+/* Título */
+h1{
+margin-bottom: 20px;
+}
+
+/* Tabuleiro */
+.board{
+display: grid;
+grid-template-columns: repeat(3, 120px);
+grid-template-rows: repeat(3, 120px);
+gap: 10px;
+justify-content: center;
+margin: 20px auto;
+}
+
+/* Cédulas */
+.cell{
+background: #2e2e44;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 40px;
+cursor: pointer;
+border-radius: 10px;
+transition: 0.2s;
+}
+
+/* Efeito ao passar mouse */
+.cell:hover{
+background: #3f3f5c;
+}
+
+/* Botão */
+button{
+padding: 10px 20px;
+font-size: 16px;
+border: none;
+border-radius: 8px;
+background: #00c896;
+color: white;
+cursor: pointer;
+}
+
+button:hover{
+background: #00a67d;
+}
+
+/* Responsividade */
+@media (max-width: 500px){
+
+/* Cédulas arrumadas em colunas */
+.board{
+grid-template-columns: repeat(3, 90px);
+grid-template-rows: repeat(3, 90px);
+}
+
+.cell{
+font-size: 32px;
+}
+}
+
+/* Pop-up */
+.overlay {
+    display: none;
+    /* Escondido por padrão, depois que o o jogador ganha, muda */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Os modals são os textos que aparecem */
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+    font-family: sans-serif;
+}
+
+/* Jogador ganha, o display vai para flex  */
+.overlay.active {
+    display: flex;
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+    font-family: sans-serif;
+    color: #1e1e2f;
+}
