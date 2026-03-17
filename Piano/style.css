@@ -1,0 +1,107 @@
+body {
+    background-color: #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.piano {
+    display: flex; /*teclas uma do lado da outra*/
+    align-items: flex-start;
+}
+
+.key-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.key {
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 0 0 5px 5px;
+    transition: background-color 0.1s, transform 0.05s;
+}
+
+.white {
+    width: 4vw;
+    min-width: 40px;
+    height: 22vw;
+    max-height: 220px;
+    background-color: #fff;
+    z-index: 1; /* coloca a tecla branca na camada de baixo */
+    
+}
+
+.black {
+    width: 2.5vw;
+    min-width: 25px;
+    height: 13vw;
+    max-height: 130px;
+    background-color: #333;
+    margin-left: -1.5vw; /* o margin-left negativo faz a tecla preta "subir" em cima da branca. */
+    margin-right: -1.5vw;
+    z-index: 2; /* coloca a tecla preta na camada de cima*/
+    
+}
+
+/* letras em baixo */
+.label {
+    margin-top: 15px;
+    color: #888;
+    font-weight: bold;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* estados de Ativação */
+.key.active,
+.key:active {
+    transform: translateY(2px);
+}
+
+.white.active,
+.white:active {
+    background-color: #e0e0e0;
+}
+
+.black.active,
+.black:active {
+    background-color: #555;
+}
+
+.piano-wrapper { /* responsividade*/
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+}
+.piano {
+    background: #111;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) { /* ajuste pra celular */
+
+    .white {
+        width: 45px;
+        height: 180px;
+    }
+
+    .black {
+        width: 28px;
+        height: 100px;
+        margin-left: -14px;
+        margin-right: -14px;
+    }
+
+    .label {
+        font-size: 12px;
+    }
+
+}
