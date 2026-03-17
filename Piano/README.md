@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# Situação de Aprendizagem 1 - FrontEnd
-### Grupo: Ana Sofhia Leonardi de Morais, Gabriela Machado, Guilherme Prestes Bosco Biondo e Kaio Martinez Jorge
-
-## Atividades Realizadas:
-- Piano Simples(Fácil);
-- Cronômetro(Médio);
-- Jogo da Velha(Difícil).
-=======
 # Documentação do Desafio Fácil: Piano Simples
 
 ### Visão Geral
@@ -42,4 +33,3 @@ A principal dificuldade foi entender como gerar som diretamente no navegador uti
 
 Foi necessário aprender como funcionam os componentes principais, como AudioContext, OscillatorNode e GainNode.
 
->>>>>>> c7aa220 (Piano)
