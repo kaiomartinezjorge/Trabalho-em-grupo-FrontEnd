@@ -1,6 +1,6 @@
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // cria o contexto de áudio (é como "ligar" a mesa de som onde todos os instrumentos serão conectados)
+const contextoAudio = new (window.AudioContext || window.webkitAudioContext)(); // cria o contexto de áudio (é como "ligar" a mesa de som onde todos os instrumentos serão conectados)
 
-const noteFrequencies = { // frequencia das notas do piano em hz
+const frequenciasNotas = { // frequencia das notas do piano em hz
   C4: 261.63,
   Db4: 277.18,
   D4: 293.66,
@@ -16,7 +16,7 @@ const noteFrequencies = { // frequencia das notas do piano em hz
   C5: 523.25,
 };
 
-const keyMap = { // possibilita tocar o som pelo teclado, além do mouse
+const mapaTeclado = { // possibilita tocar o som pelo teclado, além do mouse
   a: "C4",
   w: "Db4",
   s: "D4",
@@ -32,51 +32,51 @@ const keyMap = { // possibilita tocar o som pelo teclado, além do mouse
   k: "C5",
 };
 
-function playNote(frequency) { //função principal
-  if (!frequency) return;
-  if (audioCtx.state === "suspended") audioCtx.resume();
+function tocarNota(frequencia) { //função principal
+  if (!frequencia) return;
+  if (contextoAudio.state === "suspended") contextoAudio.resume();
 
-  const oscillator = audioCtx.createOscillator(); // cria uma fonte de som
-  const gainNode = audioCtx.createGain(); // cria o controle do volume
+  const oscilador = contextoAudio.createOscillator(); // cria uma fonte de som
+  const controleVolume = contextoAudio.createGain(); // cria o controle do volume
 
-  oscillator.type = "triangle"; // formato da onda sonora (tem sine, square, triangle e sawtooth)
-  oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+  oscilador.type = "triangle"; // formato da onda sonora (tem sine, square, triangle e sawtooth)
+  oscilador.frequency.setValueAtTime(frequencia, contextoAudio.currentTime);
 
-  gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime); // volume do som
-  gainNode.gain.exponentialRampToValueAtTime( // faz o som sumir gradualmente em 1,2s
+  controleVolume.gain.setValueAtTime(0.3, contextoAudio.currentTime); // volume do som
+  controleVolume.gain.exponentialRampToValueAtTime( // faz o som sumir gradualmente em 1,2s
     0.0001,
-    audioCtx.currentTime + 1.2,
+    contextoAudio.currentTime + 1.2,
   );
 
-  oscillator.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
+  oscilador.connect(controleVolume);
+  controleVolume.connect(contextoAudio.destination);
 
-  oscillator.start();
-  oscillator.stop(audioCtx.currentTime + 1.2);
+  oscilador.start();
+  oscilador.stop(contextoAudio.currentTime + 1.2);
 }
 
 // clique com o mouse
-document.querySelectorAll(".key").forEach((key) => {
-  key.addEventListener("mousedown", () => {
-    const note = key.dataset.note;
-    playNote(noteFrequencies[note]);
+document.querySelectorAll(".key").forEach((tecla) => {
+  tecla.addEventListener("mousedown", () => {
+    const nota = tecla.dataset.note;
+    tocarNota(frequenciasNotas[nota]);
   });
 });
 
 // teclado físico
 window.addEventListener("keydown", (e) => {
-  const key = e.key.toLowerCase();
-  const note = keyMap[key];
+  const tecla = e.key.toLowerCase();
+  const nota = mapaTeclado[tecla];
 
-  if (note && !e.repeat) {
+  if (nota && !e.repeat) {
     // !e.repeat evita que o som trave se segurar a tecla
-    playNote(noteFrequencies[note]);
+    tocarNota(frequenciasNotas[nota]);
 
     // adiciona efeito visual
-    const keyEl = document.querySelector(`[data-note="${note}"]`);
-    if (keyEl) {
-      keyEl.classList.add("active");
-      setTimeout(() => keyEl.classList.remove("active"), 150);
+    const elementoTecla = document.querySelector(`[data-note="${nota}"]`);
+    if (elementoTecla) {
+      elementoTecla.classList.add("active");
+      setTimeout(() => elementoTecla.classList.remove("active"), 150);
     }
   }
 });
